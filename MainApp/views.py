@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+
+from MainApp.models import CustomUser
 from .forms import RegisterForm, ProfilePictureForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -37,9 +39,12 @@ def index(request):
 def explore(request):
     return render(request, 'MainApp/explore.html')
 
-@login_required
-def profile(request):
-    user = request.user
+
+def profile(request, user_name):
+    try:
+        user = CustomUser.objects.get(username=user_name)
+    except CustomUser.DoesNotExist:
+        pass
     return render(request, 'MainApp/profile.html', {'user': user})
 
 def upload_profile_picture(request):

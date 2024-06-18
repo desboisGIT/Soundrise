@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Beatmaker, Music
+from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
@@ -20,12 +20,5 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
-class BeatmakerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'profile_description')
-
-class MusicAdmin(admin.ModelAdmin):
-    list_display = ('beatmaker', 'title', 'price', 'uploaded_at')
-
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(Beatmaker, BeatmakerAdmin)
-admin.site.register(Music, MusicAdmin)
+

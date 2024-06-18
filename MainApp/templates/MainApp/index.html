@@ -28,13 +28,53 @@
   </head>
   <body>
     <div id="TopBar">
+      <div id="logoSmall">
+        <svg
+          id="LogoCloud"
+          data-name="LogoCloud"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 63.68 40.55"
+        >
+          <defs>
+            <style>
+              .LogoCloud {
+                fill: url(#Nouvelle_nuance_de_dégradé_1);
+                stroke-width: 0px;
+              }
+            </style>
+            <linearGradient
+              id="Nouvelle_nuance_de_dégradé_1"
+              data-name="Nouvelle nuance de dégradé 1"
+              x1="0"
+              y1="20.28"
+              x2="63.68"
+              y2="20.28"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#c5589b" />
+              <stop offset="1" stop-color="#3e68af" />
+            </linearGradient>
+          </defs>
+          <g id="Calque_1-2" data-name="Calque 1">
+            <path
+              class="LogoCloud"
+              d="M53.45,19.35c0-.06,0-.12,0-.18,0-6.56-4.87-11.88-10.87-11.88-1.37,0-2.68.29-3.88.8C36.6,3.32,31.96,0,26.56,0c-7.37,0-13.35,6.17-13.35,13.78,0,.75.07,1.48.19,2.2-.81-.22-1.66-.35-2.53-.35C4.87,15.63,0,21.21,0,28.09c0,6.4,4.21,11.66,9.62,12.37v.09h41.6c6.88,0,12.46-4.79,12.46-10.69,0-5.25-4.42-9.61-10.23-10.51Z"
+            />
+          </g>
+        </svg>
+      </div>
       <div style="flex: 1"></div>
       <div class="topBarClickable"><a href="{% url 'index' %}">Acceuil</a></div>
       <div class="topBarClickable">
         <a href="{% url 'explore' %}">Parcourir</a>
       </div>
       <div class="topBarClickable">
-        <a href="{% url 'profile' %}">Compte</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'profile' user.username %}">Compte</a>
+        {% else %}
+          <a href="{% url 'loginAndRegister' %}">Compte</a>
+        {% endif %}
       </div>
       <div class="topBarClickable"><a>Fil d'actualité</a></div>
       <div class="topBarClickable">
@@ -79,42 +119,7 @@
       {% endif %}
     </div>
 
-    <div id="logoSmall">
-      <svg
-        id="LogoCloud"
-        data-name="LogoCloud"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 63.68 40.55"
-      >
-        <defs>
-          <style>
-            .LogoCloud {
-              fill: url(#Nouvelle_nuance_de_dégradé_1);
-              stroke-width: 0px;
-            }
-          </style>
-          <linearGradient
-            id="Nouvelle_nuance_de_dégradé_1"
-            data-name="Nouvelle nuance de dégradé 1"
-            x1="0"
-            y1="20.28"
-            x2="63.68"
-            y2="20.28"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0" stop-color="#c5589b" />
-            <stop offset="1" stop-color="#3e68af" />
-          </linearGradient>
-        </defs>
-        <g id="Calque_1-2" data-name="Calque 1">
-          <path
-            class="LogoCloud"
-            d="M53.45,19.35c0-.06,0-.12,0-.18,0-6.56-4.87-11.88-10.87-11.88-1.37,0-2.68.29-3.88.8C36.6,3.32,31.96,0,26.56,0c-7.37,0-13.35,6.17-13.35,13.78,0,.75.07,1.48.19,2.2-.81-.22-1.66-.35-2.53-.35C4.87,15.63,0,21.21,0,28.09c0,6.4,4.21,11.66,9.62,12.37v.09h41.6c6.88,0,12.46-4.79,12.46-10.69,0-5.25-4.42-9.61-10.23-10.51Z"
-          />
-        </g>
-      </svg>
-    </div>
+
     <?xml version="1.0" encoding="UTF-8"?>
     <svg
       id="Calque_2"

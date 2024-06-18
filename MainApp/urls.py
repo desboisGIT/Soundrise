@@ -16,6 +16,7 @@ urlpatterns = [
     path('upload_profile_picture/', views.upload_profile_picture, name='upload_profile_picture'),
     path('settings/<str:page>/', views.setting, name='setting_view'),
     path('settings/', views.setting, {'page': 'default'}, name='setting'),
+    path('profile/<str:user_name>/',views.profile,name='profile'),
     
 ]
 

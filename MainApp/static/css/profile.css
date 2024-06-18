@@ -304,3 +304,7 @@ input[type="checkbox"]:checked::before {
   padding-top: 1%;
   padding-bottom: 1.5%;
 }
+
+.user-description {
+  color: #fff;
+}

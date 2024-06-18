@@ -119,6 +119,49 @@
       {% endif %}
     </div>
 
+
+
+    {% if request.user.username == user.username %}
+      <p>my profil</p>
+      <div id="pagePool">
+        <div id="SideMenu">
+          {% if user.profile_picture %}
+          <div class="profile-picture-wrapper">
+            <img
+              src="{{ user.profile_picture.url }}"
+              alt="Profile Picture"
+              class="profile-picture"
+            />
+          </div>
+          {% endif %}
+  
+          <form
+            action="{% url 'upload_profile_picture' %}"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            {% csrf_token %}
+            <label for="file" class="custom-file-upload"> Change picture </label>
+            <input
+              type="file"
+              name="profile_picture"
+              id="file"
+              class="inputfile"
+            />
+  
+            <button type="submit" id="profileButton">
+              <label for="profileButton">Apply changes</label>
+            </button>
+          </form>
+        </div>
+        <div id="onTop">
+          <div id="miniTopBar">
+            <h1>{{ user.username }}</h1>
+          </div>
+          <h5 class="user-description">{{ user.profile_free_text }}</h5>
+        </div>
+      </div>
+    {% else %}
     <div id="pagePool">
       <div id="SideMenu">
         {% if user.profile_picture %}
@@ -131,32 +174,15 @@
         </div>
         {% endif %}
 
-        <form
-          action="{% url 'upload_profile_picture' %}"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          {% csrf_token %}
-          <label for="file" class="custom-file-upload"> Change picture </label>
-          <input
-            type="file"
-            name="profile_picture"
-            id="file"
-            class="inputfile"
-          />
-
-          <button type="submit" id="profileButton">
-            <label for="profileButton">Apply changes</label>
-          </button>
-        </form>
       </div>
       <div id="onTop">
         <div id="miniTopBar">
           <h1>{{ user.username }}</h1>
         </div>
-        test
+        <h5 class="user-description">{{ user.profile_free_text }}</h5>
       </div>
     </div>
+    {% endif %}
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
